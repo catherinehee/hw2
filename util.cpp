@@ -16,13 +16,41 @@ std::string convToLower(std::string src)
 std::set<std::string> parseStringToWords(string rawWords)
 {
 
+    string word = convToLower(rawWords);
 
+    stringstream ss(word);
 
+    
+    std::set<std::string> currentSet;
 
+    string str; // current string
+    
+    while (ss >> str)
+    {
+        str = trim(str);
+        int start = 0;
+        for (unsigned int i = 0; i < str.size(); i++)
+        {
+            if (str[i] < 'a' || str[i] > 'z')
+            {
+                string newstr = str.substr(start, i - start);
+                if (newstr.size() >= 2)
+                    currentSet.insert(newstr);
+                start = i + 1;
+            }
+        }
 
+        if (start > 0)
+        {
+            currentSet.insert(str.substr(start, str.size() - start));
+        }
+        else
+        {
+            currentSet.insert(str);
+        }
 
-
-
+    }
+    return currentSet;
 
 
 }

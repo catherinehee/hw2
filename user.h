@@ -18,9 +18,14 @@ public:
     void deductAmount(double amt);
     virtual void dump(std::ostream& os);
 
+
+
+    
+    
 private:
     std::string name_;
     double balance_;
     int type_;
+
 };
 #endif
